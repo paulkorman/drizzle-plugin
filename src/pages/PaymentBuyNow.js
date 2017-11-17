@@ -13,7 +13,7 @@ import Button from 'material-ui/Button';
 import NumberFormat from 'react-number-format';
 import classNames from 'classnames';
 
-import styles from '../theme/pages/Payment';
+import styles from '../theme/pages/PaymentBuyNow';
 
 class Payment extends Component {
     state = {
@@ -43,6 +43,7 @@ class Payment extends Component {
                                 </div>
                             </li>
                         </ul>
+                        <div className={this.props.classes.subText}>this will not be charged, this amount <br/>will be hold</div>
                         <Divider className={this.props.classes.divider} style={{marginBottom: 51}} />
                         <TextGroup groupName="Payment information">
                             <div className={this.props.classes.subTextGroup}>safe money tur bank account. Visa, Maestro, Discover, American Express</div>

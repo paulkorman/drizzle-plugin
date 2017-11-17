@@ -6,137 +6,16 @@ import MyAppBar from '../components/MyAppBar';
 import TextGroup from '../components/TextGroup/TextGroup';
 import MyButtonType2 from '../components/MyButtonType2';
 import Grid from 'material-ui/Grid';
+import Button from 'material-ui/Button';
 import Card, { CardContent } from 'material-ui/Card';
 import Divider from 'material-ui/Divider';
-import Dialog, {
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-} from 'material-ui/Dialog';
 import MyDialog1 from '../components/MyDialog1';
-import Button from 'material-ui/Button';
 import classNames from 'classnames';
-import CompleteIcon from '../components/CompleteIcon'
+import CompleteIcon from '../components/CompleteIcon';
+import styles from '../theme/pages/OrderAcceptedInviteFriends';
 
 
-import bgCard from '../img/bg-card.png'
-
-let cardHeadHeight = 38;
-
-
-let width=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-
-let scrollHeight = Math.max(
-    document.body.scrollHeight, document.documentElement.scrollHeight,
-    document.body.offsetHeight, document.documentElement.offsetHeight,
-    document.body.clientHeight, document.documentElement.clientHeight
-);
-
-const styles = theme => ({
-    root: {
-        minHeight: 'inherit',
-        paddingTop: 25,
-        paddingBottom: 44,
-        //height: (width>320)?scrollHeight:'100%'
-    },
-    card: {
-        borderRadius: 6,
-        boxShadow: 'none',
-        backgroundColor: '#877650',
-        marginLeft: 15,
-        marginRight: 15,
-        marginTop: 45,
-        position: 'relative'
-    },
-    cardheader: {
-        minHeight: cardHeadHeight,
-        backgroundImage: 'url(' + bgCard + ')',
-        backgroundSize: '100% auto',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: '0 -50px',
-        padding: 18,
-        marginBottom: 16,
-    },
-    cardcontent: {
-        padding: '0 18px 10px'
-    },
-    title: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: '#fff',
-        textTransform: 'uppercase',
-        lineHeight: 1,
-        verticalAlign: 'middle',
-        marginRight: 10,
-        marginBottom: 24,
-    },
-    param: {
-        lineHeight: 1.4,
-    },
-    param__prop: {
-        position: 'relative',
-        display: 'block',
-        overflow: 'hidden',
-        '&:after': {
-            content: "''",
-            position: 'absolute',
-            marginLeft: '.3em',
-            bottom: '.35em',
-            width: '100%',
-            height: 1,
-            //borderBottom: '.105em dotted',
-            background: "url('data:image/png;base64,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UmVhZHlxyWU8AAADdmlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMzIgNzkuMTU5Mjg0LCAyMDE2LzA0LzE5LTEzOjEzOjQwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOmI0N2VlNmFlLWRkZmItNzM0OS04N2I3LTQzZjU0NzNiYTJjYiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowNEYxRUREN0MzRDQxMUU3OTU3OTgxQUNCOEJBMTlDQSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowNEYxRURENkMzRDQxMUU3OTU3OTgxQUNCOEJBMTlDQSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpkNGIxYWVhNy1mM2ZmLTE3NDMtOWJmNC0wZTRhYzRlN2RlYjUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6YjQ3ZWU2YWUtZGRmYi03MzQ5LTg3YjctNDNmNTQ3M2JhMmNiIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+hqIqzgAAABJJREFUeNpi/P//PwMWsAogwABFlwOpYiHO8gAAAABJRU5ErkJggg==') repeat-x",
-        },
-    },
-    param__value: {
-        float: 'right',
-        paddingLeft: '.2em',
-        opacity: 0.5,
-        boxSizing: 'border-box',
-    },
-    param__align: {
-        '&:after': {
-            content: "''",
-            display: 'table',
-            clear: 'both'
-        },
-    },
-    list: {
-        listStyleType: 'none',
-    },
-    list__item: {
-        marginBottom: 7,
-    },
-    ul: {
-        listStyleType: 'none',
-        paddingLeft: 0,
-        margin: 0,
-        color: '#fff',
-        fontSize: 11,
-        fontWeight: 500,
-        marginTop: 15,
-        marginBottom: 20,
-    },
-    divider: {
-        backgroundColor: 'rgba(255,255,255,0.3)',
-    },
-    compicon: {
-        marginBottom: 15,
-        textAlign: 'center'
-    },
-    subname: {
-        fontSize: 11,
-        fontWeight: 'bold',
-        color: '#fff',
-        opacity: 0.3,
-        textTransform: 'uppercase',
-        margin: 0
-    },
-});
-
-
-class OrderAccepted extends Component {
+class OrderAcceptedInviteFriends extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -145,43 +24,43 @@ class OrderAccepted extends Component {
     }
 
     handleClickOpen() {
-        console.log(this.state)
+        //console.log(this.state)
         this.setState({ open: true });
-        console.log(this.state);
+        //console.log(this.state);
     }
 
-    handleRequestClose(){
-        this.setState({ open: false });
-    }
+    //handleRequestClose(){
+    //    this.setState({ open: false });
+    //}
 
     render() {
 
         return (
             <div className={this.props.classes.root}>
                 <MyAppBar
-                    title="Your order"
+                    title="Order Accepted"
                 />
                 <Card className={this.props.classes.card}>
-                    <div className={this.props.classes.cardheader}>
+                    <div className={this.props.classes.cardHeader}>
                     </div>
-                    <CardContent className={this.props.classes.cardcontent}>
+                    <CardContent className={this.props.classes.cardContent}>
                         <div className={this.props.classes.title}>
                             Welcome, xxx
                         </div>
                         <Divider className={this.props.classes.divider} />
                         <ul className={this.props.classes.ul}>
-                            <li className={this.props.classes.list__item}>
+                            <li className={this.props.classes.listItem}>
                                 <div className={classNames(this.props.classes.param)}>
-                                    <span className={this.props.classes.param__value}>90 usd</span>
-                                    <span className={this.props.classes.param__prop}>starbacks $100 gift card</span>
+                                    <span className={this.props.classes.paramValue}>$90</span>
+                                    <span className={this.props.classes.paramProp}>starbacks $100 gift card</span>
                                 </div>
                             </li>
                         </ul>
                         <Divider className={this.props.classes.divider} style={{marginBottom: 51}} />
-                        <TextGroup groupName="Payment selection">
+                        <TextGroup groupName="Payment Confirmation">
                             <div style={{marginTop: 70, marginBottom: 35, textAlign: 'center'}}>
-                                <CompleteIcon className={this.props.classes.compicon} />
-                                <div className={this.props.classes.subname} style={{opacity: 1}}>ongratulations, Your
+                                <CompleteIcon className={this.props.classes.compIcon} />
+                                <div className={this.props.classes.subName} style={{opacity: 1}}>ongratulations, Your
                                     <br/>group buy is active!</div>
                             </div>
                             <div style={{textAlign: 'center', marginTop: 30, marginBottom: 70}}>
@@ -197,22 +76,23 @@ class OrderAccepted extends Component {
                         </TextGroup>
                     </CardContent>
                 </Card>
-                <MyDialog1 open={this.state.open}>
-                    <ul>
-                        <li>fafaf</li>
-                        <li>fafaf</li>
-                        <li>fafaf</li>
-                        <li>fafaf</li>
-                    </ul>
+                <MyDialog1 open={this.state.open} titlecontent="Invite your friends" subtitlecontent={["Invite your friends through", <br key="0"/>, "social media to buy it together"]} >
+                    <div className={this.props.classes.wrapSoc}>
+                        <Button className={this.props.classes.btnFacebook}>
+                            <svg xmlns="http://www.w3.org/2000/svg" id="svg2" viewBox="0 0 10.450591 20" height="20" width="10.450591"><path d="M8.334 3.33h2.117V0H7.276S5.28-.052 4.01 1.607c0 0-.862.823-.875 3.214v2.496H0v3.54h3.135V20h3.62v-9.144h3.12l.432-3.54H6.754v-2.51c.013-.273.13-1.5 1.58-1.475z" fill="#fff" /></svg>
+                        </Button>
+                        <Button className={this.props.classes.btnTwitter}>
+                            <svg xmlns="http://www.w3.org/2000/svg" id="svg2" viewBox="0 0 19.685601 15.999999" height="15.999999" width="19.685601"><path d="M6.18 16c7.437 0 11.51-6.165 11.51-11.51 0-.176 0-.353-.016-.514.788-.563 1.48-1.288 2.012-2.092-.725.322-1.513.53-2.318.644.837-.5 1.48-1.288 1.786-2.238-.788.467-1.64.805-2.575.982C15.84.482 14.79 0 13.632 0c-2.237-.032-4.04 1.787-4.04 4.008 0 .322.032.628.097.918-3.364-.16-6.342-1.77-8.338-4.217-.354.594-.547 1.286-.547 2.027 0 1.4.708 2.64 1.803 3.364-.66-.015-1.288-.208-1.835-.498v.048c0 1.964 1.4 3.59 3.25 3.96-.337.096-.69.145-1.06.145-.26 0-.516-.032-.758-.08.515 1.61 2.012 2.784 3.783 2.816-1.385 1.08-3.123 1.74-5.022 1.74-.322 0-.644-.017-.966-.065C1.77 15.325 3.895 16 6.18 16" fill="#fff" /></svg>
+                        </Button>
+                    </div>
                 </MyDialog1>
             </div>
         );
     }
 }
 
-OrderAccepted.propTypes = {
-    classes: PropTypes.object.isRequired,
+OrderAcceptedInviteFriends.propTypes = {
+    classes: PropTypes.object,
 };
 
-export default withRoot(withStyles(styles)(OrderAccepted));
-
+export default withRoot(withStyles(styles)(OrderAcceptedInviteFriends));

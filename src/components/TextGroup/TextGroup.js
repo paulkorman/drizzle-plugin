@@ -3,38 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 
-// 1. We define the styles.
-const styles = theme => ({
-    root: {
-        color: '#fff',
-        border: '1px solid rgba(255,255,255,0.2)',
-        borderRadius: 3,
-        position: 'relative',
-        padding: '40px 25px 20px',
-        marginBottom: 0,
-        fontSize: 11,
-        fontWeight: 500,
-    },
-    groupname: {
-        left: 15,
-        top: -19,
-        padding: 9,
-        display: 'inline-block',
-        position: 'absolute',
-        backgroundColor: '#877650',
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: '#fff',
-        textTransform: 'uppercase',
-    },
-    list: {
-        listStyleType: 'none',
-        paddingLeft: 0,
-        margin: 0,
-    },
-
-
-});
+import styles from '../../theme/components/TextGroup/TextGroup';
 
 function TextGroup(props) {
     const { groupName, children, classes, className } = props;
@@ -42,22 +11,21 @@ function TextGroup(props) {
     return (
         <div
             className={classNames(
-        classes.root,
-        className,
-      )}
+            classes.root,
+            className,
+          )}
         >
-            <div className={classes.groupname}>{groupName}</div>
-            <ul className={classes.list}>
-                {children}
-            </ul>
+            <div className={classes.groupName}>{groupName}</div>
+
+            {children}
 
         </div>
     );
 }
 
 TextGroup.propTypes = {
-    children: PropTypes.node.isRequired,
-    classes: PropTypes.object.isRequired,
+    children: PropTypes.node,
+    classes: PropTypes.object,
     className: PropTypes.string,
     groupName: PropTypes.string,
 };

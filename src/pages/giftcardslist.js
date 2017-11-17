@@ -10,42 +10,11 @@ import MyCard from '../components/MyCard';
 
 import Avatar1 from '../img/avatar-1.jpg';
 
-
-
-let width=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-
-let scrollHeight = Math.max(
-    document.body.scrollHeight, document.documentElement.scrollHeight,
-    document.body.offsetHeight, document.documentElement.offsetHeight,
-    document.body.clientHeight, document.documentElement.clientHeight
-);
-
-const styles = theme =>  ({
-  root: {
-    minHeight: 'inherit',
-    //paddingTop: 55,
-    //paddingBottom: 44,
-    //height: (width>320)?scrollHeight:'100%'
-      padding: '100px 15px 44px',
-      minHeight: scrollHeight,
-      '&>div:last-child div': {
-          marginBottom: 0
-      }
-  },
-
-});
+import styles from '../theme/pages/GiftCardsList';
 
 class GiftCardsList extends Component {
     state = {
         open: false,
-    };
-
-    handleClickOpen = () => {
-        this.setState({ open: true });
-    };
-
-    handleRequestClose = () => {
-        this.setState({ open: false });
     };
 
   render() {
@@ -61,8 +30,9 @@ class GiftCardsList extends Component {
                 giftcard="$100"
                 sell="$90"
                 buytogether="true"
-                href="#ingroupbuysuccessful"
-                onclick={this.handleClickOpen}
+                infbutt="#inf-group"
+                titlecontent="$100 Gift Card Group Buy"
+                subtitlecontent={["input the ammount you", <br key="0"/>, "want to buy (min. $25; max $75)"]}
             />
             <MyCard
                 name="Starbucks"
@@ -70,8 +40,9 @@ class GiftCardsList extends Component {
                 giftcard="$200"
                 sell="$200"
                 groupbuyowner="yourself"
-                href="#ingroupbuy"
-                onclick={this.handleClickOpen}
+                infbutt="#inf-group"
+                titlecontent="second dialog"
+                subtitlecontent={["select the ammount you", <br key="0"/>, "want to buy"]}
             />
         </div>
   );
@@ -79,7 +50,7 @@ class GiftCardsList extends Component {
 }
 
 GiftCardsList.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
 };
 
 export default withRoot(withStyles(styles)(GiftCardsList));

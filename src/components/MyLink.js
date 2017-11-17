@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Button from 'material-ui/Button';
 import { withStyles } from 'material-ui/styles';
 
-import styles from '../theme/components/MyButton';
+import styles from '../theme/components/MyLink';
 
 
-function MyButton(props) {
-    const { children, classes, className, ...other } = props;
+function MyLink(props) {
+    const { children, classes, className, variant, ...other } = props;
 
     return (
-        <Button
+        <a
             className={classNames(
         classes.root,
         className,
@@ -19,14 +18,14 @@ function MyButton(props) {
             {...other}
         >
             {children}
-        </Button>
+        </a>
     );
 }
 
-MyButton.propTypes = {
-    children: PropTypes.node,
-    classes: PropTypes.object,
+MyLink.propTypes = {
+    children: PropTypes.node.isRequired,
+    classes: PropTypes.object.isRequired,
     className: PropTypes.string,
 };
 
-export default withStyles(styles)(MyButton);
+export default withStyles(styles)(MyLink);

@@ -1,32 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Button from 'material-ui/Button';
 import { withStyles } from 'material-ui/styles';
 
-import styles from '../theme/components/MyButton';
+import styles from '../theme/components/HeaderLineStyled';
 
 
-function MyButton(props) {
+function HeaderLineStyled(props) {
     const { children, classes, className, ...other } = props;
 
     return (
-        <Button
+        <div
             className={classNames(
-        classes.root,
-        className,
-      )}
+                classes.root,
+                className,
+
+              )}
             {...other}
         >
             {children}
-        </Button>
+        </div>
     );
 }
 
-MyButton.propTypes = {
+HeaderLineStyled.propTypes = {
     children: PropTypes.node,
     classes: PropTypes.object,
     className: PropTypes.string,
 };
 
-export default withStyles(styles)(MyButton);
+export default withStyles(styles)(HeaderLineStyled);
