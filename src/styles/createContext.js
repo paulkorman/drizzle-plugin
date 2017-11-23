@@ -16,7 +16,7 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: 'Quicksand, sans-serif',
-  }
+  },
 });
 
 // Configure JSS
