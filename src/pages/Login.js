@@ -12,6 +12,8 @@ import Snackbar from 'material-ui/Snackbar';
 import MyLinkStyled from '../components/MyLink';
 import HeaderLineStyled from '../components/HeaderLineStyled';
 
+import { Link } from "react-router-dom";
+
 import styles from '../theme/pages/Login'
 
 class Login extends Component {
@@ -53,7 +55,7 @@ class Login extends Component {
                 },
               }}
               />
-              <Button raised className={this.props.classes.button} href="#gift-cards-list">Login</Button>
+              <Link to='/intro'><Button raised className={this.props.classes.button}>Login</Button></Link>
               <Grid container style={{fontSize: 11, marginBottom: 45}}>
                 <Grid item xs={6} >
                   <MyLinkStyled href="#" className={this.props.classes.link}>Forgot password?</MyLinkStyled>

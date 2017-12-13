@@ -5,7 +5,6 @@ let inButtDiam1 = (inButtDiam*65)/100;
 
 const styles = theme => ({
     root: {
-
         backgroundColor: '#877650',
     },
     dialog: {

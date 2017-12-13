@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import classNames from 'classnames';
@@ -125,7 +126,7 @@ class MyCard extends React.Component {
                 <MyDialog open={this.state.opendialog2} name={this.state.name} avatar={this.state.avatar} titlecontent={this.state.titlecontent} subtitlecontent={this.state.subtitlecontent} >
                     <div className={this.props.classes.wrapsoc}>
                         <div style={{textAlign: 'center'}}>
-                            <MyButtonType2 href="#payment-buy-together" style={{minWidth: 163}}>buy now</MyButtonType2>
+                            <Link to='/payment-buy-together'><MyButtonType2 style={{minWidth: 163}}>buy now</MyButtonType2></Link>
                         </div>
                     </div>
                 </MyDialog>

@@ -17,6 +17,24 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: 'Quicksand, sans-serif',
   },
+  overrides: {
+    MuiMobileStepper: {
+      dot: {
+        width: 6,
+        height: 6,
+        backgroundColor: 'rgba(255,255,255,0)',
+        border: '1px solid #fff'
+      },
+      dotActive: {
+        backgroundColor: '#fff'
+      }
+    },
+    MuiButton: {
+      disabled: {
+        color: 'rgba(255,255,255,0.3) !important',
+      }
+    }
+  }
 });
 
 // Configure JSS
